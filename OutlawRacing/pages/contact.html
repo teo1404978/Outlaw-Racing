@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Contact Outlaw Racing about motorcycle products, sizing and orders."
+    />
+    <title>Contact | Outlaw Racing</title>
+    <link rel="icon" href="../media/images/branding/outlaw-racing-logo.jpeg" />
+    <link rel="stylesheet" href="../styles/style.css" />
+    <link rel="stylesheet" href="../styles/mobile.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+    <header class="site-header">
+      <div class="container nav-wrapper">
+        <a class="brand" href="index.html" aria-label="Outlaw Racing home"
+          ><img
+            src="../media/images/branding/outlaw-racing-logo.jpeg"
+            alt="Outlaw Racing logo"
+          /><span>OUTLAW RACING</span></a
+        >
+        <button
+          class="menu-button"
+          id="menuButton"
+          type="button"
+          aria-label="Open navigation"
+          aria-expanded="false"
+        >
+          ☰
+        </button>
+        <nav class="main-nav" id="mainNav" aria-label="Main navigation">
+          <a href="index.html">Home</a><a href="products.html">Shop</a
+          ><a href="about.html">About</a
+          ><a href="contact.html" aria-current="page">Contact</a>
+        </nav>
+        <a class="cart-link" href="cart.html" aria-label="Shopping cart"
+          >Cart <span class="cart-count" data-cart-count>0</span></a
+        >
+      </div>
+    </header>
+    <main id="main-content">
+      <section class="page-hero contact-hero">
+        <div class="container">
+          <span class="eyebrow">Contact Outlaw Racing</span>
+          <h1>Talk to the team</h1>
+        </div>
+      </section>
+      <section class="section">
+        <div class="container contact-grid">
+          <div class="contact-card">
+            <span class="eyebrow">Customer support</span>
+            <h2>Send a message</h2>
+            <p>
+              Ask about products, sizing, availability or an existing order.
+            </p>
+            <p><strong>Email:</strong> hello@outlawracing.co.uk</p>
+            <p><strong>Telephone:</strong> 020 0000 0000</p>
+            <p><strong>Hours:</strong> Monday to Friday, 09:00–17:30</p>
+          </div>
+          <form class="contact-card" id="contactForm" novalidate>
+            <div class="form-field">
+              <label for="contactName">Name</label
+              ><input
+                id="contactName"
+                name="name"
+                autocomplete="name"
+                required
+              />
+              <p class="form-error" id="contactNameError"></p>
+            </div>
+            <div class="form-field">
+              <label for="contactEmail">Email address</label
+              ><input
+                id="contactEmail"
+                name="email"
+                type="email"
+                autocomplete="email"
+                required
+              />
+              <p class="form-error" id="contactEmailError"></p>
+            </div>
+            <div class="form-field">
+              <label for="contactMessage">Message</label
+              ><textarea id="contactMessage" name="message" required></textarea>
+              <p class="form-error" id="contactMessageError"></p>
+            </div>
+            <button class="button button-primary" type="submit">
+              Send message
+            </button>
+            <p class="form-success" id="formSuccess" role="status"></p>
+          </form>
+        </div>
+      </section>
+    </main>
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <div>
+          <a class="brand" href="index.html"
+            ><img
+              src="../media/images/branding/outlaw-racing-logo.jpeg"
+              alt=""
+            /><span>OUTLAW RACING</span></a
+          >
+          <p>
+            Premium motorcycle racing gear and Outlaw Racing Society clothing
+            for riders who demand performance.
+          </p>
+        </div>
+        <div>
+          <h3>Shop</h3>
+          <a href="products.html?category=Helmets">Helmets</a
+          ><a href="products.html?category=Boots">Boots</a
+          ><a href="products.html?category=Gloves">Gloves</a
+          ><a href="products.html?category=Leather%20Suits">Leather Suits</a>
+        </div>
+        <div>
+          <h3>Information</h3>
+          <a href="about.html">About</a><a href="contact.html">Contact</a
+          ><a href="cart.html">Cart</a>
+        </div>
+      </div>
+      <div class="container footer-bottom">
+        © <span data-year></span> Outlaw Racing. All rights reserved.
+      </div>
+    </footer>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="../js/products.js"></script>
+    <script src="../js/script.js"></script>
+  </body>
+</html>
