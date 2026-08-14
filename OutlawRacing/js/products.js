@@ -1,38 +1,301 @@
 "use strict";
+const PRODUCT_IMAGE_BASE = window.location.pathname.includes("/pages/")
+  ? "../media/images/products/"
+  : "media/images/products/";
 
-/*
-  PRODUCT IMAGE PATHS
-  Replace any image file inside media/images/products and update the matching
-  image value below. Keep the ../ prefix because all website pages are inside
-  the pages folder.
-*/
 const PRODUCTS = [
-  {id:1,name:"Alpinestars Supertech R Boots - Red",brand:"Alpinestars",category:"Boots",price:489.99,image:"../media/images/products/alpinestars-supertech-r-red.jpg",description:"Premium race boots with extensive ankle support, replaceable sliders and a bold red finish.",sizes:["40","41","42","43","44","45"],stock:"In stock",featured:true},
-  {id:2,name:"Alpinestars Supertech R Boots - Black",brand:"Alpinestars",category:"Boots",price:469.99,image:"../media/images/products/alpinestars-supertech-r-black.webp",description:"Professional black race boots designed for high-speed protection, stability and track-day comfort.",sizes:["40","41","42","43","44","45"],stock:"In stock",featured:true},
-  {id:3,name:"Alpinestars Supertech R Vented Boots - Blue",brand:"Alpinestars",category:"Boots",price:479.99,image:"../media/images/products/alpinestars-supertech-r-blue.webp",description:"Vented blue and black racing boots with reinforced impact zones and improved airflow.",sizes:["41","42","43","44","45"],stock:"Low stock"},
-  {id:4,name:"Sidi Mag-1 Bautista Limited Edition Boots",brand:"Sidi",category:"Boots",price:449.99,image:"../media/images/products/sidi-mag1-gold.webp",description:"Limited-edition gold racing boots featuring secure adjustment points and strong shin protection.",sizes:["41","42","43","44"],stock:"Low stock"},
-  {id:5,name:"Sidi Rex CE Boots - Black",brand:"Sidi",category:"Boots",price:399.99,image:"../media/images/products/sidi-rex-black.webp",description:"CE-certified racing boots with adjustable supports, durable armour and a sleek black design.",sizes:["40","41","42","43","44","45"],stock:"In stock"},
-  {id:6,name:"Sidi ST Motorcycle Boots - Black",brand:"Sidi",category:"Boots",price:289.99,image:"../media/images/products/sidi-st-black.jpg",description:"Sport-focused boots with protective bracing, secure fasteners and comfortable road-ready construction.",sizes:["40","41","42","43","44","45","46"],stock:"In stock"},
+  {
+    id: 1,
+    name: "Alpinestars Supertech R Boots - Red",
+    brand: "Alpinestars",
+    category: "Boots",
+    price: 489.99,
+    image: PRODUCT_IMAGE_BASE + "alpinestars-supertech-r-red.jpg",
+    description: "Premium race boots with extensive ankle support, replaceable sliders and a bold red finish.",
+    sizes: ["40", "41", "42", "43", "44", "45"],
+    stock: "In stock",
+    featured: true
+  },
 
-  {id:7,name:"Alpinestars GP Pro R4 Gloves - Black and White",brand:"Alpinestars",category:"Gloves",price:219.99,image:"../media/images/products/alpinestars-gp-pro-r4-white.webp",description:"Full-gauntlet leather gloves with hard knuckle protection, reinforced palms and a secure racing fit.",sizes:["S","M","L","XL","2XL"],stock:"In stock"},
-  {id:8,name:"Alpinestars GP Pro R4 Leather Gloves - Black",brand:"Alpinestars",category:"Gloves",price:219.99,image:"../media/images/products/alpinestars-gp-pro-r4-black.jpg",description:"Black leather race gloves offering excellent feel, impact protection and long-cuff coverage.",sizes:["S","M","L","XL","2XL"],stock:"In stock",featured:true},
-  {id:9,name:"RST Pro Series GP D3O Gloves - Splinter Blue",brand:"RST",category:"Gloves",price:149.99,image:"../media/images/products/rst-gp-d3o-blue.jpg",description:"Colourful race gloves with D3O impact protection, reinforced fingers and a protective gauntlet cuff.",sizes:["S","M","L","XL"],stock:"In stock"},
-  {id:10,name:"RST TracTech Evo 4 CE Race Gloves - White",brand:"RST",category:"Gloves",price:129.99,image:"../media/images/products/rst-tractech-evo4-white.webp",description:"CE-certified white racing gloves with carbon knuckle armour and durable leather construction.",sizes:["S","M","L","XL","2XL"],stock:"In stock"},
+  {
+    id: 2,
+    name: "Alpinestars Supertech R Boots - Black",
+    brand: "Alpinestars",
+    category: "Boots",
+    price: 469.99,
+    image: PRODUCT_IMAGE_BASE + "alpinestars-supertech-r-black.webp",
+    description: "Professional black race boots designed for high-speed protection, stability and track-day comfort.",
+    sizes: ["40", "41", "42", "43", "44", "45"],
+    stock: "In stock",
+    featured: true
+  },
 
-  {id:11,name:"Alpinestars Supertech R10 Element Helmet",brand:"Alpinestars",category:"Helmets",price:899.99,image:"../media/images/products/alpinestars-supertech-r10.webp",description:"High-performance full-face helmet with aerodynamic shaping, carbon construction and race-ready ventilation.",sizes:["S","M","L","XL"],stock:"Low stock",featured:true},
-  {id:12,name:"HJC RPHA 11 Aliens Helmet",brand:"HJC",category:"Helmets",price:699.99,image:"../media/images/products/hjc-rpha11-aliens.jpg",description:"Distinctive Aliens graphic helmet with a lightweight shell, wide visor and proven sports performance.",sizes:["S","M","L","XL"],stock:"In stock",featured:true},
-  {id:13,name:"HJC RPHA 12 Quartararo Edition Helmet",brand:"HJC",category:"Helmets",price:649.99,image:"../media/images/products/hjc-rpha12-quartararo.webp",description:"Quartararo-inspired racing helmet with bold graphics, excellent ventilation and stable high-speed aerodynamics.",sizes:["S","M","L","XL"],stock:"In stock"},
-  {id:14,name:"HJC RPHA 12 Carbon Helmet",brand:"HJC",category:"Helmets",price:599.99,image:"../media/images/products/hjc-rpha12-carbon.webp",description:"Lightweight carbon-fibre helmet designed for reduced fatigue, efficient airflow and track-focused performance.",sizes:["S","M","L","XL"],stock:"In stock"},
-  {id:15,name:"Shoei X-Spirit 3 Power Rush TC8 Helmet",brand:"Shoei",category:"Helmets",price:749.99,image:"../media/images/products/shoei-x-spirit3-orange.jpg",description:"Premium orange race helmet combining a refined aerodynamic shell with secure fit and clear visibility.",sizes:["S","M","L","XL"],stock:"Low stock"},
+  {
+    id: 3,
+    name: "Alpinestars Supertech R Vented Boots - Blue",
+    brand: "Alpinestars",
+    category: "Boots",
+    price: 479.99,
+    image: PRODUCT_IMAGE_BASE + "alpinestars-supertech-r-blue.webp",
+    description: "Vented blue and black racing boots with reinforced impact zones and improved airflow.",
+    sizes: ["41", "42", "43", "44", "45"],
+    stock: "Low stock"
+  },
 
-  {id:16,name:"RST Pro Series D3O Airbag Leather Suit",brand:"RST",category:"Leather Suits",price:1099.99,image:"../media/images/products/rst-pro-d3o-airbag.jpg",description:"One-piece leather suit prepared for airbag protection, with D3O armour and flexible race-fit panels.",sizes:["38","40","42","44","46","48"],stock:"In stock"},
-  {id:17,name:"RST Pro Series D3O Airbag One-Piece Suit 3720",brand:"RST",category:"Leather Suits",price:1049.99,image:"../media/images/products/rst-pro-d3o-3720.jpg",description:"Blue and fluorescent one-piece racing suit built for mobility, abrasion resistance and integrated protection.",sizes:["38","40","42","44","46"],stock:"In stock"},
-  {id:18,name:"RST Pro Series Evo Airbag Suit - Flo Red",brand:"RST",category:"Leather Suits",price:999.99,image:"../media/images/products/rst-evo-flo-red.webp",description:"Bright red airbag-compatible race suit with reinforced impact zones and ergonomic stretch areas.",sizes:["38","40","42","44","46","48"],stock:"In stock"},
-  {id:19,name:"RST Pro Series Evo Airbag Suit - Tiger Flo",brand:"RST",category:"Leather Suits",price:999.99,image:"../media/images/products/rst-evo-tiger.webp",description:"Eye-catching tiger-pattern leather suit offering race-level protection and a close performance fit.",sizes:["38","40","42","44","46"],stock:"Low stock",featured:true},
-  {id:20,name:"RST Pro Series Evo Airbag Graphic Suit",brand:"RST",category:"Leather Suits",price:999.99,image:"../media/images/products/rst-evo-graphic.webp",description:"Distinctive graphic racing suit with airbag compatibility, protective armour and flexible leather panels.",sizes:["38","40","42","44","46"],stock:"In stock"},
+  {
+    id: 4,
+    name: "Sidi Mag-1 Bautista Limited Edition Boots",
+    brand: "Sidi",
+    category: "Boots",
+    price: 449.99,
+    image: PRODUCT_IMAGE_BASE + "sidi-mag1-gold.webp",
+    description: "Limited-edition gold racing boots featuring secure adjustment points and strong shin protection.",
+    sizes: ["41", "42", "43", "44"],
+    stock: "Low stock"
+  },
 
-  {id:21,name:"Outlaw Racing Society Black T-Shirt",brand:"Outlaw Racing",category:"Clothing",price:24.99,image:"../media/images/products/outlaw-black-tshirt.webp",description:"Black crew-neck T-shirt featuring Outlaw Racing Society branding on the chest, sleeves and back.",sizes:["S","M","L","XL","2XL"],stock:"In stock",featured:true},
-  {id:22,name:"Outlaw Racing Society Grey Polo Shirt",brand:"Outlaw Racing",category:"Clothing",price:34.99,image:"../media/images/products/outlaw-grey-polo.webp",description:"Smart grey polo shirt with front, sleeve and back Outlaw Racing Society graphics.",sizes:["S","M","L","XL","2XL"],stock:"In stock"},
-  {id:23,name:"Outlaw Racing Society Red Fleece Jacket",brand:"Outlaw Racing",category:"Clothing",price:54.99,image:"../media/images/products/outlaw-red-fleece.webp",description:"Warm red zip-up fleece jacket with bold Outlaw Racing Society branding for paddock and everyday wear.",sizes:["S","M","L","XL","2XL"],stock:"In stock"},
-  {id:24,name:"Outlaw Racing Society Black Baseball Cap",brand:"Outlaw Racing",category:"Accessories",price:19.99,image:"../media/images/products/outlaw-black-cap.webp",description:"Classic black baseball cap with a curved peak and prominent Outlaw Racing Society logo.",sizes:["One size"],stock:"In stock"}
+  {
+    id: 5,
+    name: "Sidi Rex CE Boots - Black",
+    brand: "Sidi",
+    category: "Boots",
+    price: 399.99,
+    image: PRODUCT_IMAGE_BASE + "sidi-rex-black.webp",
+    description: "CE-certified racing boots with adjustable supports, durable armour and a sleek black design.",
+    sizes: ["40", "41", "42", "43", "44", "45"],
+    stock: "In stock"
+  },
+
+  {
+    id: 6,
+    name: "Sidi ST Motorcycle Boots - Black",
+    brand: "Sidi",
+    category: "Boots",
+    price: 289.99,
+    image: PRODUCT_IMAGE_BASE + "sidi-st-black.jpg",
+    description: "Sport-focused boots with protective bracing, secure fasteners and comfortable road-ready construction.",
+    sizes: ["40", "41", "42", "43", "44", "45", "46"],
+    stock: "In stock"
+  },
+
+  {
+    id: 7,
+    name: "Alpinestars GP Pro R4 Gloves - Black and White",
+    brand: "Alpinestars",
+    category: "Gloves",
+    price: 219.99,
+    image: PRODUCT_IMAGE_BASE + "alpinestars-gp-pro-r4-white.webp",
+    description: "Full-gauntlet leather gloves with hard knuckle protection, reinforced palms and a secure racing fit.",
+    sizes: ["S", "M", "L", "XL", "2XL"],
+    stock: "In stock"
+  },
+
+  {
+    id: 8,
+    name: "Alpinestars GP Pro R4 Leather Gloves - Black",
+    brand: "Alpinestars",
+    category: "Gloves",
+    price: 219.99,
+    image: PRODUCT_IMAGE_BASE + "alpinestars-gp-pro-r4-black.jpg",
+    description: "Black leather race gloves offering excellent feel, impact protection and long-cuff coverage.",
+    sizes: ["S", "M", "L", "XL", "2XL"],
+    stock: "In stock",
+    featured: true
+  },
+
+  {
+    id: 9,
+    name: "RST Pro Series GP D3O Gloves - Splinter Blue",
+    brand: "RST",
+    category: "Gloves",
+    price: 149.99,
+    image: PRODUCT_IMAGE_BASE + "rst-gp-d3o-blue.jpg",
+    description: "Colourful race gloves with D3O impact protection, reinforced fingers and a protective gauntlet cuff.",
+    sizes: ["S", "M", "L", "XL"],
+    stock: "In stock"
+  },
+
+  {
+    id: 10,
+    name: "RST TracTech Evo 4 CE Race Gloves - White",
+    brand: "RST",
+    category: "Gloves",
+    price: 129.99,
+    image: PRODUCT_IMAGE_BASE + "rst-tractech-evo4-white.webp",
+    description: "CE-certified white racing gloves with carbon knuckle armour and durable leather construction.",
+    sizes: ["S", "M", "L", "XL", "2XL"],
+    stock: "In stock"
+  },
+
+  {
+    id: 11,
+    name: "Alpinestars Supertech R10 Element Helmet",
+    brand: "Alpinestars",
+    category: "Helmets",
+    price: 899.99,
+    image: PRODUCT_IMAGE_BASE + "alpinestars-supertech-r10.webp",
+    description: "High-performance full-face helmet with aerodynamic shaping, carbon construction and race-ready ventilation.",
+    sizes: ["S", "M", "L", "XL"],
+    stock: "Low stock",
+    featured: true
+  },
+
+  {
+    id: 12,
+    name: "HJC RPHA 11 Aliens Helmet",
+    brand: "HJC",
+    category: "Helmets",
+    price: 699.99,
+    image: PRODUCT_IMAGE_BASE + "hjc-rpha11-aliens.jpg",
+    description: "Distinctive Aliens graphic helmet with a lightweight shell, wide visor and proven sports performance.",
+    sizes: ["S", "M", "L", "XL"],
+    stock: "In stock",
+    featured: true
+  },
+
+  {
+    id: 13,
+    name: "HJC RPHA 12 Quartararo Edition Helmet",
+    brand: "HJC",
+    category: "Helmets",
+    price: 649.99,
+    image: PRODUCT_IMAGE_BASE + "hjc-rpha12-quartararo.webp",
+    description: "Quartararo-inspired racing helmet with bold graphics, excellent ventilation and stable high-speed aerodynamics.",
+    sizes: ["S", "M", "L", "XL"],
+    stock: "In stock"
+  },
+
+  {
+    id: 14,
+    name: "HJC RPHA 12 Carbon Helmet",
+    brand: "HJC",
+    category: "Helmets",
+    price: 599.99,
+    image: PRODUCT_IMAGE_BASE + "hjc-rpha12-carbon.webp",
+    description: "Lightweight carbon-fibre helmet designed for reduced fatigue, efficient airflow and track-focused performance.",
+    sizes: ["S", "M", "L", "XL"],
+    stock: "In stock"
+  },
+
+  {
+    id: 15,
+    name: "Shoei X-Spirit 3 Power Rush TC8 Helmet",
+    brand: "Shoei",
+    category: "Helmets",
+    price: 749.99,
+    image: PRODUCT_IMAGE_BASE + "shoei-x-spirit3-orange.jpg",
+    description: "Premium orange race helmet combining a refined aerodynamic shell with secure fit and clear visibility.",
+    sizes: ["S", "M", "L", "XL"],
+    stock: "Low stock"
+  },
+
+  {
+    id: 16,
+    name: "RST Pro Series D3O Airbag Leather Suit",
+    brand: "RST",
+    category: "Leather Suits",
+    price: 1099.99,
+    image: PRODUCT_IMAGE_BASE + "rst-pro-d3o-airbag.jpg",
+    description: "One-piece leather suit prepared for airbag protection, with D3O armour and flexible race-fit panels.",
+    sizes: ["38", "40", "42", "44", "46", "48"],
+    stock: "In stock"
+  },
+
+  {
+    id: 17,
+    name: "RST Pro Series D3O Airbag One-Piece Suit 3720",
+    brand: "RST",
+    category: "Leather Suits",
+    price: 1049.99,
+    image: PRODUCT_IMAGE_BASE + "rst-pro-d3o-3720.jpg",
+    description: "Blue and fluorescent one-piece racing suit built for mobility, abrasion resistance and integrated protection.",
+    sizes: ["38", "40", "42", "44", "46"],
+    stock: "In stock"
+  },
+
+  {
+    id: 18,
+    name: "RST Pro Series Evo Airbag Suit - Flo Red",
+    brand: "RST",
+    category: "Leather Suits",
+    price: 999.99,
+    image: PRODUCT_IMAGE_BASE + "rst-evo-flo-red.webp",
+    description: "Bright red airbag-compatible race suit with reinforced impact zones and ergonomic stretch areas.",
+    sizes: ["38", "40", "42", "44", "46", "48"],
+    stock: "In stock"
+  },
+
+  {
+    id: 19,
+    name: "RST Pro Series Evo Airbag Suit - Tiger Flo",
+    brand: "RST",
+    category: "Leather Suits",
+    price: 999.99,
+    image: PRODUCT_IMAGE_BASE + "rst-evo-tiger.webp",
+    description: "Eye-catching tiger-pattern leather suit offering race-level protection and a close performance fit.",
+    sizes: ["38", "40", "42", "44", "46"],
+    stock: "Low stock",
+    featured: true
+  },
+
+  {
+    id: 20,
+    name: "RST Pro Series Evo Airbag Graphic Suit",
+    brand: "RST",
+    category: "Leather Suits",
+    price: 999.99,
+    image: PRODUCT_IMAGE_BASE + "rst-evo-graphic.webp",
+    description: "Distinctive graphic racing suit with airbag compatibility, protective armour and flexible leather panels.",
+    sizes: ["38", "40", "42", "44", "46"],
+    stock: "In stock"
+  },
+
+  {
+    id: 21,
+    name: "Outlaw Racing Society Black T-Shirt",
+    brand: "Outlaw Racing",
+    category: "Clothing",
+    price: 24.99,
+    image: PRODUCT_IMAGE_BASE + "outlaw-black-tshirt.webp",
+    description: "Black crew-neck T-shirt featuring Outlaw Racing Society branding on the chest, sleeves and back.",
+    sizes: ["S", "M", "L", "XL", "2XL"],
+    stock: "In stock",
+    featured: true
+  },
+
+  {
+    id: 22,
+    name: "Outlaw Racing Society Grey Polo Shirt",
+    brand: "Outlaw Racing",
+    category: "Clothing",
+    price: 34.99,
+    image: PRODUCT_IMAGE_BASE + "outlaw-grey-polo.webp",
+    description: "Smart grey polo shirt with front, sleeve and back Outlaw Racing Society graphics.",
+    sizes: ["S", "M", "L", "XL", "2XL"],
+    stock: "In stock"
+  },
+
+  {
+    id: 23,
+    name: "Outlaw Racing Society Red Fleece Jacket",
+    brand: "Outlaw Racing",
+    category: "Clothing",
+    price: 54.99,
+    image: PRODUCT_IMAGE_BASE + "outlaw-red-fleece.webp",
+    description: "Warm red zip-up fleece jacket with bold Outlaw Racing Society branding for paddock and everyday wear.",
+    sizes: ["S", "M", "L", "XL", "2XL"],
+    stock: "In stock"
+  },
+
+  {
+    id: 24,
+    name: "Outlaw Racing Society Black Baseball Cap",
+    brand: "Outlaw Racing",
+    category: "Accessories",
+    price: 19.99,
+    image: PRODUCT_IMAGE_BASE + "outlaw-black-cap.webp",
+    description: "Classic black baseball cap with a curved peak and prominent Outlaw Racing Society logo.",
+    sizes: ["One size"],
+    stock: "In stock"
+  }
 ];
